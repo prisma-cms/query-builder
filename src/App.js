@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class App extends Component {
+import { buildClientSchema, GraphQLSchema, parse, print } from 'graphql';
+
+class QueryBuilder extends Component {
 
   static propTypes = {
-
+    views: PropTypes.arrayOf(PropTypes.func).isRequired,
+    inEditMode: PropTypes.bool.isRequired,
+    query: PropTypes.string.isRequired,
+    schema: PropTypes.instanceOf(GraphQLSchema),
   };
 
   render() {
@@ -16,4 +21,4 @@ class App extends Component {
   }
 }
  
-export default App;
+export default QueryBuilder;
