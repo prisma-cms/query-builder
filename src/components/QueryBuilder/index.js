@@ -300,6 +300,10 @@ class QueryBuilder extends GraphiQL {
 
 
     const {
+      view,
+    } = this.props;
+
+    const {
       query,
       schema,
     } = this.state;
@@ -443,6 +447,7 @@ class QueryBuilder extends GraphiQL {
                 schema={schema}
                 query={query}
                 setQuery={query => this.setQuery(query)}
+                view={view}
               />
               {footer}
             </div>

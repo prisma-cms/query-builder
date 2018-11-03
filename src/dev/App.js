@@ -21,6 +21,9 @@ import QueryBuilder from "../components/QueryBuilder";
 import { withStyles } from 'material-ui';
 
 
+import UsersView from "./view/Users";
+
+
 class SchemaProvider extends Component {
 
   static propTypes = {
@@ -131,6 +134,9 @@ class SchemaProvider extends Component {
       schema={clientSchema}
       fetcher={this.fetcher}
       defaultQuery=""
+      view={[
+        UsersView,
+      ]}
     />;
 
   }

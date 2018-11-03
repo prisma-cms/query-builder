@@ -66,6 +66,8 @@ import { TextField } from 'material-ui';
 
 import { ResultViewer } from 'graphiql/dist/components/ResultViewer';
 
+import ResultView from "./ResultView";
+
 const styles = theme => {
 
   return {
@@ -92,6 +94,15 @@ const styles = theme => {
       padding: 10,
     },
     definition: {
+
+      "& .OperationDefinition": {
+        margin: "10px 0",
+        padding: 10,
+      },
+
+      "& .Field": {
+        margin: "10px",
+      },
 
     },
   }
@@ -220,7 +231,26 @@ class QueryBuilderUI extends Component {
     // console.log("renderDocumentFromSchema query", query);
     console.log("renderDocumentFromSchema AST", AST);
 
-    let errors = AST && validate(schema, AST);
+    let errors;
+
+    let outputResults;
+
+    if (schema && AST) {
+
+      errors = validate(schema, AST);
+
+      if (!errors.length) {
+
+        outputResults = <ResultView
+          query={query}
+          schema={schema}
+          AST={AST}
+        />
+
+      }
+
+    }
+
 
     // console.log("renderDocumentFromSchema AST validate");
 
@@ -795,6 +825,7 @@ export default class ResultRenderer extends ResultViewer {
   getCodeMirror() {
     return {
       setSize: (size) => {
+        console.log("getCodeMirror size", size);
       },
     }
   }
