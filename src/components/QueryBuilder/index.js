@@ -165,7 +165,7 @@ class QueryBuilder extends GraphiQL {
 
   setQuery(query) {
 
-    console.log("setQuery query", query);
+
 
     try {
       this.handleEditQuery(query, () => this.handlePrettifyQuery());

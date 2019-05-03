@@ -1,5 +1,5 @@
 {
-  "name": "@prisma-cms/component-boilerplate",
+  "name": "@prisma-cms/query-builder",
   "version": "1.0.5",
   "private": false,
   "main": "lib/App.js",
@@ -11,14 +11,17 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "graphiql": "latest",
+    "graphql": "14.0.2",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
     "@prisma-cms/front": "latest",
     "nwb": "^0.23.0",
-    "react-scripts": "latest"
+    "react-scripts": "^2.1.2"
+  },
+  "resolutions": {
+    "graphql": "14.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,23 +32,25 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "description": "Tests module for @prisma-cms",
+  "description": "Query builder component for @prisma-cms",
   "directories": {
     "lib": "lib"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/prisma-cms/component-boilerplate.git"
   },
   "keywords": [
     "prisma-cms",
     "front",
-    "components"
+    "components",
+    "graphql",
+    "query builder"
   ],
   "author": "Fi1osof",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/prisma-cms/component-boilerplate/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prisma-cms/query-builder.git"
   },
-  "homepage": "https://github.com/prisma-cms/component-boilerplate#readme"
+  "bugs": {
+    "url": "https://github.com/prisma-cms/query-builder/issues"
+  },
+  "homepage": "https://github.com/prisma-cms/query-builder#readme"
 }

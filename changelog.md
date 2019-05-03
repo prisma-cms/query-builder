@@ -1,3 +1,7 @@
+=================================
+- Fix dev renderer
+- Cleanup console.log
+
 1.0.5
 =================================
 - Upgrade React

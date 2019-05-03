@@ -55,7 +55,7 @@ class SchemaProvider extends Component {
 
     super(props);
 
-    const schema = this.getSchema();
+    // const schema = this.getSchema();
 
 
     const {
@@ -149,22 +149,22 @@ const SchemaLoader = graphql(gql`
 `)((props) => {
 
 
-    const {
-      data: {
-        __schema: schema,
-      }
-    } = props;
-
-    if (!schema) {
-      return null;
+  const {
+    data: {
+      __schema: schema,
     }
+  } = props;
+
+  if (!schema) {
+    return null;
+  }
 
 
 
-    return <SchemaProvider
-      {...props}
-    />
-  });
+  return <SchemaProvider
+    {...props}
+  />
+});
 
 
 
@@ -205,7 +205,11 @@ class DevRenderer extends PrismaCmsRenderer {
 
     return pure ? <App
       {...other}
-    /> : super.render()
+    /> : <div
+      className={classes.root}
+    >
+        {super.render()}
+      </div>
 
   }
 }

@@ -228,8 +228,8 @@ class QueryBuilderUI extends Component {
       return null;
     }
 
-    // console.log("renderDocumentFromSchema query", query);
-    console.log("renderDocumentFromSchema AST", AST);
+
+
 
     let errors;
 
@@ -252,7 +252,7 @@ class QueryBuilderUI extends Component {
     }
 
 
-    // console.log("renderDocumentFromSchema AST validate");
+
 
 
 
@@ -318,15 +318,15 @@ class QueryBuilderUI extends Component {
       query,
     } = this.props;
 
-    // console.log("injectQuery query", this.props.query);
 
-    // console.log("injectQuery", subQuery, line, col);
+
+
 
     let lines = query.split('\n');
 
     let editLine = lines[line];
 
-    // console.log("injectQuery editLine", editLine);
+
 
 
     if (editLine !== undefined) {
@@ -338,9 +338,9 @@ class QueryBuilderUI extends Component {
       query = lines.join('\n');
     }
 
-    // console.log("injectQuery editLine2", editLine);
 
-    // console.log("injectQuery 2", query);
+
+
 
     return this.setQuery(query);
   }
@@ -376,7 +376,7 @@ class QueryBuilderUI extends Component {
 
     const newQuery = this.replaceRange(query, start, end, value);
 
-    console.log("newQuery", newQuery);
+
 
     this.setQuery(newQuery);
   }
@@ -398,7 +398,7 @@ class QueryBuilderUI extends Component {
     let output = [];
 
 
-    console.log("renderDefinition node", node);
+
 
     const {
       kind,
@@ -474,7 +474,7 @@ class QueryBuilderUI extends Component {
     } = selectionSet || {};
 
 
-    // console.log("renderOperationDefinition node", node);
+
 
     const nameValue = name && name.value || "";
 
@@ -490,7 +490,7 @@ class QueryBuilderUI extends Component {
         name: directiveName,
       } = n;
 
-      console.log("Directive", n);
+
 
       const directiveNameValue = directiveName && directiveName.value || "";
 
@@ -543,7 +543,7 @@ class QueryBuilderUI extends Component {
 
   renderArgument(node) {
 
-    console.log("renderArgument", node);
+
 
     let output;
 
@@ -599,7 +599,7 @@ class QueryBuilderUI extends Component {
       },
     } = node;
 
-    console.log("onChangeArgument", node, value);
+
 
     return this.updateNode(node, value);
 
@@ -634,7 +634,7 @@ class QueryBuilderUI extends Component {
     } = this.props;
 
 
-    console.log("renderDefinition node", node);
+
 
 
     let output = [];
@@ -650,7 +650,7 @@ class QueryBuilderUI extends Component {
 
     const childs = Object.values(node);
 
-    // console.log("values", values);
+
 
     output.push(this.renderSuggestions(node));
 
@@ -664,8 +664,8 @@ class QueryBuilderUI extends Component {
 
           event.stopPropagation();
 
-          console.log("renderSuggestions node", node);
-          console.log("renderSuggestions loc", loc);
+
+
         }}
       >
         Kind: {kind}. {nameValue ? `${nameValue} ${aliasValue ? ` (${aliasValue})` : ""}` : null}
@@ -701,25 +701,25 @@ class QueryBuilderUI extends Component {
     } = loc;
 
 
-    // console.log("renderSuggestions node", node);
-    // console.log("renderSuggestions loc", loc);
+
+
 
     // let suggestions = getAutocompleteSuggestions(schema, query, point);
 
 
-    // console.log("renderSuggestions suggestions", node, loc, suggestions);
 
-    // console.log("renderSuggestions suggestions start", getAutocompleteSuggestions(schema, query, loc));
-    // console.log("renderSuggestions suggestions start", getAutocompleteSuggestions(schema, query, new Position(0, 0)));
-    // console.log("renderSuggestions suggestions start", getAutocompleteSuggestions(schema, query, new Position(4, 2)));
 
-    // console.log("renderSuggestions suggestions start", getAutocompleteSuggestions(schema, query, start));
-    // console.log("renderSuggestions suggestions start + 1", getAutocompleteSuggestions(schema, query, start + 1));
-    // console.log("renderSuggestions suggestions start - 1", getAutocompleteSuggestions(schema, query, start - 1));
 
-    // console.log("renderSuggestions suggestions end", getAutocompleteSuggestions(schema, query, end));
-    // console.log("renderSuggestions suggestions end + 1", getAutocompleteSuggestions(schema, query, end + 1));
-    // console.log("renderSuggestions suggestions end - 1", getAutocompleteSuggestions(schema, query, end - 1));
+
+
+
+
+
+
+
+
+
+
 
   }
 
@@ -825,7 +825,7 @@ export default class ResultRenderer extends ResultViewer {
   getCodeMirror() {
     return {
       setSize: (size) => {
-        console.log("getCodeMirror size", size);
+
       },
     }
   }
