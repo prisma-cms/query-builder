@@ -1,4 +1,6 @@
+1.0.6
 =================================
+- Public release
 - Fix dev renderer
 - Cleanup console.log
 
