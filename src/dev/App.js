@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import PrismaCmsApp from '@prisma-cms/front'
 import { Renderer as PrismaCmsRenderer } from '@prisma-cms/front'
+import Context from '@prisma-cms/context'
 
 import * as queryFragments from "@prisma-cms/front/lib/schema/generated/api.fragments";
 
@@ -21,66 +22,145 @@ import QueryBuilder from "../components/QueryBuilder";
 import { withStyles } from 'material-ui';
 
 
-import UsersView from "./view/Users";
+// import UsersView from "./view/Users";
 
 
 class SchemaProvider extends Component {
 
   static propTypes = {
-
+    defaultQuery: PropTypes.string.isRequired,
+    query: PropTypes.string,
+    fetcher: PropTypes.func,
+    onEditQuery: PropTypes.func,
   };
 
-  static contextTypes = {
-    client: PropTypes.object.isRequired,
+  static defaultProps = {
+    defaultQuery: ``,
   }
 
+  static contextType = Context;
 
-  static childContextTypes = {
-    schema: PropTypes.object,
-  }
+  // static contextTypes = {
+  //   client: PropTypes.object.isRequired,
+  // }
 
 
-  getChildContext() {
+  // static childContextTypes = {
+  //   schema: PropTypes.object,
+  // }
 
-    return {
-      schema: this.getSchema(),
-    }
 
-  }
+  // getChildContext() {
+
+  //   return {
+  //     schema: this.getSchema(),
+  //   }
+
+  // }
+
 
   state = {}
 
+  // constructor(props) {
 
-  constructor(props) {
+  //   super(props);
 
-    super(props);
-
-    // const schema = this.getSchema();
-
-
-    const {
-      data,
-    } = props;
-
-    const clientSchema = buildClientSchema(data);
+  //   // const schema = this.getSchema();
 
 
+  //   const {
+  //     data,
+  //   } = props;
 
-    this.state = {
-      ...this.state,
+  //   const clientSchema = buildClientSchema(data);
+
+
+  //   // console.log("clientSchema", { ...clientSchema });
+  //   // console.log("clientSchema data", { ...data });
+
+  //   this.state = {
+  //     ...this.state,
+  //     clientSchema,
+  //   }
+
+  // }
+
+
+  componentWillMount() {
+
+    this.initSchema();
+
+    super.componentWillMount && super.componentWillMount();
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+
+    let {
       clientSchema,
+    } = this.state;
+
+    if (!clientSchema) {
+
+      clientSchema = this.buildClientSchema();
+
+      if (clientSchema) {
+        this.setState({
+          clientSchema,
+        });
+      }
+
     }
+
+    super.componentDidUpdate && super.componentDidUpdate(prevProps, prevState);
+  }
+
+
+  initSchema() {
+
+    const clientSchema = this.buildClientSchema();
+
+    if (clientSchema) {
+
+      Object.assign(this.state, {
+        clientSchema,
+      });
+
+    }
+
+  }
+
+
+  buildClientSchema() {
+
+    let clientSchema;
+
+    const schema = this.getSchema();
+
+    if (schema) {
+
+      clientSchema = buildClientSchema({
+        __schema: schema,
+      });
+
+    }
+
+    return clientSchema;
 
   }
 
 
   getSchema() {
 
+    // const {
+    //   data: {
+    //     __schema: schema,
+    //   }
+    // } = this.props;
+
     const {
-      data: {
-        __schema: schema,
-      }
-    } = this.props;
+      schema,
+    } = this.context;
 
     return schema;
   }
@@ -107,17 +187,22 @@ class SchemaProvider extends Component {
       })
   }
 
+
   render() {
 
+    // const schema = this.getSchema();
 
-    const schema = this.getSchema();
+    // if (!schema) {
+    //   return null;
+    // }
 
 
-
-
-    if (!schema) {
-      return null;
-    }
+    const {
+      defaultQuery,
+      query,
+      fetcher,
+      ...other
+    } = this.props;
 
 
     const {
@@ -132,11 +217,16 @@ class SchemaProvider extends Component {
 
     return <QueryBuilder
       schema={clientSchema}
-      fetcher={this.fetcher}
-      defaultQuery=""
+      fetcher={fetcher || this.fetcher}
+      defaultQuery={defaultQuery}
       view={[
-        UsersView,
+        // UsersView,
       ]}
+      query={query}
+      // onEditQuery={query => {
+      //   console.log("onEditQuery", query);
+      // }}
+      {...other}
     />;
 
   }
@@ -144,27 +234,53 @@ class SchemaProvider extends Component {
 }
 
 
-const SchemaLoader = graphql(gql`
-  ${introspectionQuery}
-`)((props) => {
+// const SchemaLoader = graphql(gql`
+//   ${introspectionQuery}
+// `)((props) => {
 
 
-  const {
-    data: {
-      __schema: schema,
-    }
-  } = props;
+//   const {
+//     data: {
+//       __schema: schema,
+//     }
+//   } = props;
 
-  if (!schema) {
-    return null;
-  }
+//   if (!schema) {
+//     return null;
+//   }
 
 
 
-  return <SchemaProvider
-    {...props}
-  />
-});
+//   return <SchemaProvider
+//     {...props}
+//   />
+// });
+
+
+// class SchemaLoader extends Component {
+
+//   static contextType = Context;
+
+//   render() {
+
+//     const {
+//       schema,
+//     } = this.context;
+
+//     console.log("schema", schema);
+
+//     if (!schema) {
+//       return null;
+//     }
+
+//     return <SchemaProvider
+//     // data={{
+//     //   __schema: schema,
+//     // }}
+//     />
+
+//   }
+// }
 
 
 
@@ -183,10 +299,15 @@ class DevRenderer extends PrismaCmsRenderer {
 
   getRoutes() {
 
+    const {
+      schema,
+    } = this.context;
+
     return [{
       exact: true,
       path: "/",
-      component: SchemaLoader,
+      // component: schema ? SchemaProvider : null,
+      component: SchemaProvider,
     }, {
       path: "*",
       render: props => this.renderOtherPages(props),
@@ -231,7 +352,9 @@ const Renderer = withStyles({
       },
     },
   },
-})(DevRenderer);
+})(props => <DevRenderer
+  {...props}
+/>);
 
 export default class DevApp extends Component {
 

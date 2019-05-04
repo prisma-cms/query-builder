@@ -11,6 +11,8 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@prisma-cms/context": "latest",
+    "graphiql": "latest",
     "graphql": "14.0.2",
     "react": "latest",
     "react-dom": "latest"

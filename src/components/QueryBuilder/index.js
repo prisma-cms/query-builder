@@ -496,4 +496,6 @@ class QueryBuilder extends GraphiQL {
 }
 
 
-export default withStyles(styles)(QueryBuilder);
+export default withStyles(styles)(props => <QueryBuilder
+  {...props}
+/>);

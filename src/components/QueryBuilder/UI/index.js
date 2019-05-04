@@ -799,7 +799,9 @@ class QueryBuilderUI extends Component {
 }
 
 
-const UI = withStyles(styles)(QueryBuilderUI);
+const UI = withStyles(styles)(props => <QueryBuilderUI
+  {...props}
+/>);
 
 export default class ResultRenderer extends ResultViewer {
 
