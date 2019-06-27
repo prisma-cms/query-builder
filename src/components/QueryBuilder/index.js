@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 
 import {
@@ -37,7 +37,7 @@ import { DocExplorer } from 'graphiql/dist/components/DocExplorer';
 // import DocExplorer from "./DocExplorer";
 
 
-import { Button } from 'material-ui';
+import Button from 'material-ui/Button';
 
 
 import { getAutocompleteSuggestions } from 'graphql-language-service-interface';

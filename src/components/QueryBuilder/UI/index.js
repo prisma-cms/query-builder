@@ -33,36 +33,19 @@ import PropTypes from 'prop-types';
 
 
 import {
-  buildClientSchema,
   GraphQLSchema,
   parse,
   validate,
-  print,
-  type,
-  Source,
 } from 'graphql';
 
 // import {
 //   parse,
 // } from "graphql-js/dist/language";
 
-import { withStyles, Button, Grid, Typography, Paper } from 'material-ui';
-
-import {
-  getAutocompleteSuggestions,
-  getTokenAtPosition,
-  getTypeInfo,
-} from 'graphql-language-service-interface/dist/getAutocompleteSuggestions';
-
-import { CharacterStream, onlineParser } from 'graphql-language-service-parser';
-
-
-import {
-  Position,
-  getASTNodeAtPosition,
-} from 'graphql-language-service-utils';
-import { TextField } from 'material-ui';
-
+import withStyles from 'material-ui/styles/withStyles';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
 
 import { ResultViewer } from 'graphiql/dist/components/ResultViewer';
 

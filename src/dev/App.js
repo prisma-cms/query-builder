@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import PrismaCmsApp from '@prisma-cms/front'
 import { Renderer as PrismaCmsRenderer } from '@prisma-cms/front'
 
-import * as queryFragments from "@prisma-cms/front/lib/schema/generated/api.fragments";
+// import * as queryFragments from "@prisma-cms/front/lib/schema/generated/api.fragments";
 
 import App from "../App";
 
 
 
 // import QueryBuilder from "../components/QueryBuilder";
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 
 // import UsersView from "./view/Users";
@@ -89,15 +89,12 @@ class DevRenderer extends PrismaCmsRenderer {
     } = this.context;
 
     return [{
-      exact: true,
-      path: "/",
+      exact: false,
+      path: "*",
       // component: schema ? SchemaProvider : null,
       // component: SchemaProvider,
       component: App,
-    }, {
-      path: "*",
-      render: props => this.renderOtherPages(props),
-    },];
+    }];
 
   }
 
@@ -163,11 +160,11 @@ const Renderer = withStyles({
 export default class DevApp extends Component {
 
   static propTypes = {
-    queryFragments: PropTypes.object.isRequired,
+    queryFragments: PropTypes.object,
   }
 
   static defaultProps = {
-    queryFragments,
+    // queryFragments,
     lang: "ru",
   }
 
@@ -181,6 +178,8 @@ export default class DevApp extends Component {
     return <PrismaCmsApp
       queryFragments={queryFragments}
       Renderer={Renderer}
+      apolloOptions={{
+      }}
       // pure={true}
       {...other}
     />
