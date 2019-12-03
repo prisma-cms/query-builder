@@ -1,3 +1,7 @@
+1.1.1
+=================================
+- Rollback graphiql due error https://github.com/graphql/graphiql/issues/1045
+
 1.1.0
 =================================
 - Cleanup material-ui
