@@ -1,3 +1,4 @@
+import '../src/styles/styles.scss'
 import React, { useCallback, useMemo } from 'react'
 
 import { Meta } from '@storybook/react'
@@ -11,9 +12,9 @@ import {
   PRIMARY_STORY,
 } from '@storybook/addon-docs/blocks'
 
-import { default as Component, QueryBuilderProps } from 'src'
+import { default as Component, QueryBuilderProps } from '../src'
 import gql from 'graphql-tag'
-import { useApollo } from 'dev/lib/apolloClient'
+import { useApollo } from '../dev/lib/apolloClient'
 import { buildClientSchema, GraphQLError, introspectionQuery } from 'graphql'
 import { useQuery } from '@apollo/client'
 

@@ -19,4 +19,4 @@
 
 // export default MainPage
 
-export { default } from 'dev/pages/MainPage'
+export { default } from '../dev/pages/MainPage'

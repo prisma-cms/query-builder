@@ -3,10 +3,10 @@ import React, { Component, useMemo } from 'react'
 import { buildClientSchema, GraphQLError, introspectionQuery } from 'graphql'
 
 import gql from 'graphql-tag'
-import QueryBuilder from 'src'
+import QueryBuilder from '../../../src'
 import { useQuery } from '@apollo/client'
 import { MainPageProps, MainPageRenderProps } from './interfaces'
-import { useApollo } from 'dev/lib/apolloClient'
+import { useApollo } from '../../lib/apolloClient'
 
 const introspectionQueryDocument = gql(introspectionQuery)
 

@@ -2,8 +2,8 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider } from 'styled-components'
-import theme from 'dev/theme'
-import { useApollo } from 'dev/lib/apolloClient'
+import theme from '../../theme'
+import { useApollo } from '../../lib/apolloClient'
 import { ApolloProvider } from '@apollo/client'
 
 const App = ({ Component, pageProps }: AppProps) => {

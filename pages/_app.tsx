@@ -1,3 +1,3 @@
-import 'dev/styles/styles.scss'
+import '../dev/styles/styles.scss'
 
-export { default } from 'dev/pages/_App'
+export { default } from '../dev/pages/_App'
