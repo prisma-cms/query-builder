@@ -1,6 +1,7 @@
 // import React, { useCallback } from 'react'
 // import styled from 'styled-components'
-import Component from '../../src/components/QueryBuilder'
+// import Component from '../../src/components/QueryBuilder'
+import Component from '../../src'
 
 // import { render } from 'dev/tests/utils'
 
