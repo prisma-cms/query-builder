@@ -12,15 +12,18 @@ import {
   PRIMARY_STORY,
 } from '@storybook/addon-docs/blocks'
 
-import { default as Component, QueryBuilderProps } from '../src'
+import {
+  default as Component,
+  QueryBuilderProps,
+} from '../src/components/QueryBuilder'
 import gql from 'graphql-tag'
 import { useApollo } from '../dev/lib/apolloClient'
-import { buildClientSchema, GraphQLError, introspectionQuery } from 'graphql'
+import { buildClientSchema, GraphQLError, getIntrospectionQuery } from 'graphql'
 import { useQuery } from '@apollo/client'
 
 const title = '@prisma-cms/query-builder'
 
-const introspectionQueryDocument = gql(introspectionQuery)
+const introspectionQueryDocument = gql(getIntrospectionQuery())
 
 export const QueryBuilder: React.FC = () => {
   // const { ...other } = props

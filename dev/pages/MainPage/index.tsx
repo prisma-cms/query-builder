@@ -1,14 +1,14 @@
 import React, { Component, useMemo } from 'react'
 
-import { buildClientSchema, GraphQLError, introspectionQuery } from 'graphql'
+import { buildClientSchema, GraphQLError, getIntrospectionQuery } from 'graphql'
 
 import gql from 'graphql-tag'
-import QueryBuilder from '../../../src'
+import QueryBuilder from '../../../src/components/QueryBuilder'
 import { useQuery } from '@apollo/client'
 import { MainPageProps, MainPageRenderProps } from './interfaces'
 import { useApollo } from '../../lib/apolloClient'
 
-const introspectionQueryDocument = gql(introspectionQuery)
+const introspectionQueryDocument = gql(getIntrospectionQuery())
 
 class MainPage<P extends MainPageProps = MainPageProps> extends Component<P> {
   static defaultProps = {
